@@ -129,7 +129,7 @@ def run_random_forest(X_train, y_train, X_test, y_test):
     @param: X_test - a numpy matrix containing features for test data (e.g. TF-IDF matrix)
     @param: y_test - a numpy array containing labels for each test sample
     """
-    clf = RandomForestClassifier(n_estimators=150, max_depth=200)
+    clf = RandomForestClassifier(n_estimators=150, max_depth=200, oob_score=True)
     clf.fit(X_train, y_train)
 
     y_pred = clf.predict(X_test)
@@ -199,7 +199,7 @@ def run_xgboost(X_train, y_train, X_test, y_test):
 
 
 def run_lightgbm(X_train, y_train, X_test, y_test):
-    clf = LGBMClassifier()
+    clf = LGBMClassifier(max_depth=15, num_leaves=40, min_child_samples=15, learning_rate=0.1, feature_fraction=0.6,n_estimators=150)
     clf.fit(X_train, y_train)
 
     y_pred = clf.predict(X_test)
