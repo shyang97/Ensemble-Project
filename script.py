@@ -129,7 +129,7 @@ def run_random_forest(X_train, y_train, X_test, y_test):
     @param: X_test - a numpy matrix containing features for test data (e.g. TF-IDF matrix)
     @param: y_test - a numpy array containing labels for each test sample
     """
-    clf = RandomForestClassifier()
+    clf = RandomForestClassifier(n_estimators=150, max_depth=200)
     clf.fit(X_train, y_train)
 
     y_pred = clf.predict(X_test)
