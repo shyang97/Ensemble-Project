@@ -151,7 +151,7 @@ def run_decision_tree(X_train, y_train, X_test, y_test):
 
 
 def run_bagging(X_train, y_train, X_test, y_test):
-    clf = BaggingClassifier()
+    clf = BaggingClassifier(max_samples=0.5, max_features=0.5)
     clf.fit(X_train, y_train)
 
     y_pred = clf.predict(X_test)
@@ -188,7 +188,7 @@ def run_adaboost(X_train, y_train, X_test, y_test):
 
 
 def run_xgboost(X_train, y_train, X_test, y_test):
-    clf = XGBClassifier()
+    clf = XGBClassifier(n_estimators=150, max_depth=7, min_child_weight=1, subsample=0.7, colsample_bytree=0.4, learning_rate=0.1)
     clf.fit(X_train, y_train)
 
     y_pred = clf.predict(X_test)
