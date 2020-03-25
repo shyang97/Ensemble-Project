@@ -162,7 +162,7 @@ def run_bagging(X_train, y_train, X_test, y_test):
 
 
 def run_extratree(X_train, y_train, X_test, y_test):
-    clf = ExtraTreesClassifier(min_samples_split=1,min_samples_leaf=1,bootstrap=False)
+    clf = ExtraTreesClassifier(min_samples_split=2,min_samples_leaf=1,bootstrap=False)
     clf.fit(X_train, y_train)
 
     y_pred = clf.predict(X_test)
