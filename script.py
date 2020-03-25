@@ -162,7 +162,7 @@ def run_bagging(X_train, y_train, X_test, y_test):
 
 
 def run_extratree(X_train, y_train, X_test, y_test):
-    clf = ExtraTreesClassifier()
+    clf = ExtraTreesClassifier(min_samples_split=1,min_samples_leaf=1,bootstrap=False)
     clf.fit(X_train, y_train)
 
     y_pred = clf.predict(X_test)
@@ -173,7 +173,11 @@ def run_extratree(X_train, y_train, X_test, y_test):
 
 
 def run_adaboost(X_train, y_train, X_test, y_test):
-    clf = AdaBoostClassifier()
+    clf = AdaBoostClassifier(base_estimator=DecisionTreeClassifier(splitter='best', min_samples_split=12, 
+                                                                   min_samples_leaf=18,criterion='gini',
+                                                                   max_features=9,max_depth=30),
+                                                                   learning_rate=0.1,
+                                                                   n_estimators=60)
     clf.fit(X_train, y_train)
 
     y_pred = clf.predict(X_test)
