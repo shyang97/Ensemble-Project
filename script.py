@@ -112,7 +112,7 @@ test_X_tfidf =tfidf.transform(list(docs_test_raw))
 test_X=test_X_tfidf.toarray()
 
 """
-    Methods implementing the models.
+    Methods implementing the models
 """
 # RandomForestClassifier
 def run_random_forest(X_train, y_train, X_test, y_test):
@@ -219,11 +219,7 @@ def run_catboost(X_train, y_train, X_test, y_test):
 
 
 """
-   The main function should print all the accuracies and F1 scores for all the models.
-   
-   The names of the models should be sklearn classnames, e.g. DecisionTreeClassifier, RandomForestClassifier etc.
-   
-   Please make sure that your code is outputting the performances in proper format, because your script will be run automatically by a meta-script.
+   Main function
 """
 if __name__ == "__main__":
     # Split the training set into train/test subsets in order to see out-sample performance
