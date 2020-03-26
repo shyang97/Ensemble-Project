@@ -96,13 +96,13 @@ def raw_to_tokens(raw_string, spacy_nlp):
 docs_raw=data['designation']
 docs_raw.reset_index(inplace=True, drop=True)
 for i in range(len(docs_raw)):
-    docs_raw.loc[i]=raw_to_tokens(docs_raw.loc[i],spacy_nlp)
+    docs_raw[i]=raw_to_tokens(docs_raw[i],spacy_nlp)
 
 # Test
 docs_test_raw=data_test['designation']
 docs_test_raw.reset_index(inplace=True, drop=True)
 for i in range(len(docs_test_raw)):
-    docs_test_raw.loc[i]=raw_to_tokens(docs_test_raw.loc[i],spacy_nlp)
+    docs_test_raw[i]=raw_to_tokens(docs_test_raw[i],spacy_nlp)
 
 # Vectorization - transform text into feature sets
 tfidf=TfidfVectorizer()
