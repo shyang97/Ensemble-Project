@@ -168,6 +168,18 @@ def run_extratree(X_train, y_train, X_test, y_test):
 
     return accuracy, f1
 
+#GBDTClassifier
+def run_gbdt(X_train, y_train, X_test, y_test):
+    clf =  GradientBoostingClassifier(max_samples=0.5, max_features=0.5)
+    clf.fit(X_train, y_train)
+
+    y_pred = clf.predict(X_test)
+    accuracy = accuracy_score(y_test, y_pred)
+    f1 = f1_score(y_test, y_pred, average="weighted")
+
+    return accuracy, f1
+    
+
 # AdaBoostClassifier
 def run_adaboost(X_train, y_train, X_test, y_test):
     clf = AdaBoostClassifier(base_estimator=DecisionTreeClassifier(splitter='best', min_samples_split=12, 
@@ -229,10 +241,11 @@ if __name__ == "__main__":
     model_2_acc, model_2_f1 = run_bagging(X_train, y_train, X_test, y_test)
     model_3_acc, model_3_f1 = run_random_forest(X_train, y_train, X_test, y_test)
     model_4_acc, model_4_f1 = run_extratree(X_train, y_train, X_test, y_test)
-    model_5_acc, model_5_f1 = run_adaboost(X_train, y_train, X_test, y_test)
-    model_6_acc, model_6_f1 = run_xgboost(X_train, y_train, X_test, y_test)
-    model_7_acc, model_7_f1 = run_lightgbm(X_train, y_train, X_test, y_test)
-    model_8_acc, model_8_f1 = run_catboost(X_train, y_train, X_test, y_test)
+    model_5_acc, model_5_f1 = run_gbdt(X_train, y_train, X_test, y_test)
+    model_6_acc, model_6_f1 = run_adaboost(X_train, y_train, X_test, y_test)
+    model_7_acc, model_7_f1 = run_xgboost(X_train, y_train, X_test, y_test)
+    model_8_acc, model_8_f1 = run_lightgbm(X_train, y_train, X_test, y_test)
+    model_9_acc, model_9_f1 = run_catboost(X_train, y_train, X_test, y_test)
 
 
     # print the results
@@ -240,7 +253,8 @@ if __name__ == "__main__":
     print("BaggingClassifier", model_2_acc, model_2_f1)
     print("RandomForestClassifier", model_3_acc, model_3_f1)
     print("ExtraTreesClassifier", model_4_acc, model_4_f1)
-    print("AdaBoostClassifier", model_5_acc, model_5_f1)
-    print("XGBClassifier", model_6_acc, model_6_f1)
-    print("LGBMClassifier", model_7_acc, model_7_f1)
-    print("CatBoostClassifier", model_8_acc, model_8_f1)
+    print("GBDTClassifier", model_5_acc, model_5_f1)
+    print("AdaBoostClassifier", model_6_acc, model_6_f1)
+    print("XGBClassifier", model_7_acc, model_7_f1)
+    print("LGBMClassifier", model_8_acc, model_8_f1)
+    print("CatBoostClassifier", model_9_acc, model_9_f1)
