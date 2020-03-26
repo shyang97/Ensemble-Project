@@ -113,17 +113,8 @@ test_X=test_X_tfidf.toarray()
 
 """
     Methods implementing the models.
-    
-    Each of your model should have a separate method. e.g. run_random_forest, run_decision_tree etc.
-    
-    Your method should:
-        (1) create the proper instance of the model with the best hyperparameters you found
-        (2) fit the model with a given training data
-        (3) run the prediction on a given test data
-        (4) return accuracy and F1 score
-        
-    Following is a sample method. Please note that the parameters given here are just examples.
 """
+# RandomForestClassifier
 def run_random_forest(X_train, y_train, X_test, y_test):
     """
     @param: X_train - a numpy matrix containing features for training data (e.g. TF-IDF matrix)
@@ -131,16 +122,20 @@ def run_random_forest(X_train, y_train, X_test, y_test):
     @param: X_test - a numpy matrix containing features for test data (e.g. TF-IDF matrix)
     @param: y_test - a numpy array containing labels for each test sample
     """
+#     create the proper instance of the model with the best hyperparameters you found
     clf = RandomForestClassifier(n_estimators=150, max_depth=200, oob_score=True)
+#     fit the model with a given training data
     clf.fit(X_train, y_train)
 
+#     run the prediction on a given test data
     y_pred = clf.predict(X_test)
     accuracy = accuracy_score(y_test, y_pred)
     f1 = f1_score(y_test, y_pred, average="weighted")
 
+#     return accuracy and F1 score
     return accuracy, f1
 
-
+# DecisionTreeClassifier
 def run_decision_tree(X_train, y_train, X_test, y_test):
     clf = DecisionTreeClassifier()
     clf.fit(X_train, y_train)
@@ -151,7 +146,7 @@ def run_decision_tree(X_train, y_train, X_test, y_test):
 
     return accuracy, f1
 
-
+# BaggingClassifier
 def run_bagging(X_train, y_train, X_test, y_test):
     clf = BaggingClassifier(max_samples=0.5, max_features=0.5)
     clf.fit(X_train, y_train)
@@ -162,7 +157,7 @@ def run_bagging(X_train, y_train, X_test, y_test):
 
     return accuracy, f1
 
-
+# ExtraTreesClassifier
 def run_extratree(X_train, y_train, X_test, y_test):
     clf = ExtraTreesClassifier(min_samples_split=2,min_samples_leaf=1,bootstrap=False)
     clf.fit(X_train, y_train)
@@ -173,7 +168,7 @@ def run_extratree(X_train, y_train, X_test, y_test):
 
     return accuracy, f1
 
-
+# AdaBoostClassifier
 def run_adaboost(X_train, y_train, X_test, y_test):
     clf = AdaBoostClassifier(base_estimator=DecisionTreeClassifier(splitter='best', min_samples_split=12, 
                                                                    min_samples_leaf=18,criterion='gini',
@@ -188,7 +183,7 @@ def run_adaboost(X_train, y_train, X_test, y_test):
 
     return accuracy, f1
 
-
+# XGBClassifier
 def run_xgboost(X_train, y_train, X_test, y_test):
     clf = XGBClassifier(n_estimators=150, max_depth=7, min_child_weight=1, subsample=0.7, colsample_bytree=0.4, learning_rate=0.1)
     clf.fit(X_train, y_train)
@@ -199,7 +194,7 @@ def run_xgboost(X_train, y_train, X_test, y_test):
 
     return accuracy, f1
 
-
+# LGBMClassifier
 def run_lightgbm(X_train, y_train, X_test, y_test):
     clf = LGBMClassifier(max_depth=15, num_leaves=40, min_child_samples=15, learning_rate=0.1, feature_fraction=0.6,n_estimators=150)
     clf.fit(X_train, y_train)
@@ -210,7 +205,7 @@ def run_lightgbm(X_train, y_train, X_test, y_test):
 
     return accuracy, f1
 
-
+# CatBoostClassifier
 def run_catboost(X_train, y_train, X_test, y_test):
     clf = CatBoostClassifier()
     clf.fit(X_train, y_train)
